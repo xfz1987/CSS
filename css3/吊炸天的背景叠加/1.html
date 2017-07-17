@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS background-image_CSS3</title>
+	<style>
+		input[type='range']{width:300px;}
+		.test_box {
+			width: 600px;
+			margin-left: auto;
+			margin-right: auto;
+			padding-bottom: 20px;
+		}
+		.test_image {
+			width: 512px;
+			height: 360px;
+			position: relative;
+			overflow: hidden;
+		}
+		.test_image img {
+			position: absolute;
+		}
+		.test_div {
+			padding: 20px;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			background-color: #f0f0f0;
+			text-align: center;
+			font-size: 16px;
+			color: #666;
+		}
+	</style>
+	</head>
+	<body>
+		<div class="test_box">
+			<p>cross-fade的百分比值：
+				<input id="rangeCrossFade" type="range" value="50" min="0" max="100" step="10"/> 
+				<span id="valueCrossFade">50</span>%
+			</p>
+            <div id="crossFadeImage" class="test_image"></div>
+            <br/>
+            <p>opacity的百分比值：
+				<input id="rangeOpacity" type="range" value="50" min="0" max="100" step="10" /> 
+				<span id="valueOpacity">50</span>%
+			</p>
+            <div id="opacityImage" class="test_image"></div>
+		</div>
+		
+		<script>
+			var $ = function(selector) {
+				return document.querySelector(selector);
+			};
+
+			var eleCrossFadeImage = $("#crossFadeImage"),
+			    eleCrossFadeRange = $("#rangeCrossFade"), 
+				eleCrossFadeValue = $("#valueCrossFade");
+        
+			var funCrossFade = function(){
+				var value = eleCrossFadeRange.value;
+					eleCrossFadeValue.innerHTML = value;
+
+				["-webkit-", "-moz-", "-ms-", "-o-", ""].forEach(function(prefix){
+					eleCrossFadeImage.style.backgroundImage= prefix + "cross-fade(url(mm1.jpg),url(mm2.jpg),"+ value +"%)";
+				});    
+			};
+			
+			//页面初始化的时候需要使用
+			funCrossFade();
+			
+			eleCrossFadeRange.addEventListener("change",funCrossFade,false);
+        
+			// ----------------------------分隔线----------------------
+			var eleOpacityImage = $("#opacityImage"), 
+				eleOpacityRange = $("#rangeOpacity"), 
+				eleOpacityValue = $("#valueOpacity");
+				eleOpacityImage.innerHTML = '<img src="mm1.jpg" /><img src="mm2.jpg"/>';
+        
+			var eleImages = eleOpacityImage.getElementsByTagName("img");
+        
+			var funOpacity = function() {
+				var value = eleOpacityRange.value;
+					eleOpacityValue.innerHTML = value;
+					eleImages[1].style.opacity = value / 100;
+			};
+        
+			funOpacity();
+        
+			eleOpacityRange.addEventListener("change",funOpacity,false);
+  
+		</script>
+	</body>
+</html>	

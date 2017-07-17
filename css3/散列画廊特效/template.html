@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>散列画廊特效</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{background:#fff;color:#555;font-family:'Avenir Next','Lantinghei SC';font-size:14px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+        .wrap{min-width:800px;height:600px;position:absolute;top:50%;left:0;right:0;margin:-300px auto 0;background:#333;overflow:hidden;
+            -webkit-perspective:800px;/*增加3d效果:让子元素获取3d效果*/
+                    perspective:800px;
+
+        }
+        .photo{width:260px;height:320px;position:absolute;z-index:1;box-shadow:0 0 1px rgba(0,0,0,.01);cursor:pointer;
+            -webkit-transition:all 1s;
+               -moz-transition:all 1s;
+                 -o-transition:all 1s;
+                    transition:all 1s;
+
+            /*初始化时每张海报都居中显示，然后通过 JavaScript 设置除中间海报外的随机位置，会产生从中间发散的效果时候时候，
+                切换中间海报的时候，由于中间海报瞬间失去了 .photo_center 的样式，但仍然还有 .photo 的样式，再被设置随机样式后会有平滑的过渡效果
+            */
+            left:50%;
+            top:50%;
+            margin:-160px 0 0 -130px;
+        }
+        .photo .side{width:100%;height:100%;padding:20px;box-sizing:border-box;-moz-box-sizing:border-box;background:#eee;position:absolute;top:0;left:0;}
+        .photo .side-front .image{width:100%;height:250px;line-height:250px;overflow:hidden;}
+        .photo .side-front .image img{width:100%;}
+        .photo .side-front .caption{text-align:center;font-size:16px;line-height:50px;}
+        .photo .side-back .desc{color:#666;font-size:14px;line-height:1.5em;}
+        .photo_center{left:50%;top:50%;margin:-160px 0 0 -130px;z-index:2;}
+        .photo-wrap{position:absolute;width:100%;height:100%;-webkit-transform-style:preserve-3d;-webkit-transition:all .6s;}
+        .photo-wrap .side-front{
+            -webkit-transform:rotateY(0deg);
+               -moz-transform:rotateY(0deg);
+                -ms-transform:rotateY(0deg);
+                 -o-transform:rotateY(0deg);
+                    transform:rotateY(0deg);
+        }
+        .photo-wrap .side-back{
+            -webkit-transform:rotateY(180deg);
+               -moz-transform:rotateY(180deg);
+                -ms-transform:rotateY(180deg);
+                 -o-transform:rotateY(180deg);
+                    transform:rotateY(180deg);
+        }
+        .photo-wrap .side{
+            -webkit-backface-visibility:hidden;/*当元素不面向屏幕时隐藏*/
+               -moz-backface-visibility:hidden;
+                -ms-backface-visibility:hidden;
+                    backface-visibility:hidden;
+        }
+        /*sideback反转了，内容倒置了，再父元素上再来次3D选择就Ok了*/
+        .photo_front .photo-wrap{
+            -webkit-transform:rotateY(0deg);
+               -moz-transform:rotateY(0deg);
+                -ms-transform:rotateY(0deg);
+                 -o-transform:rotateY(0deg);
+                    transform:rotateY(0deg);
+        }
+        .photo_back .photo-wrap{
+            -webkit-transform:rotateY(180deg);
+               -moz-transform:rotateY(180deg);
+                -ms-transform:rotateY(180deg);
+                 -o-transform:rotateY(180deg);
+                    transform:rotateY(180deg);
+        }
+
+        @font-face{
+            font-family: 'icomoon';
+            src:url('fonts/icomoon.eot');/*ie9兼容模式*/
+            src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),/*解决bug*/
+            url('fonts/icomoon.ttf') format('truetype'),
+            url('fonts/icomoon.woff') format('woff'),
+            url('fonts/icomoon.svg#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .nav{width:80%;height:30px;line-height:30px;position:absolute;left:10%;bottom:20px;z-index:3;text-align:center;}
+        .nav .i{width:30px;height:30px;display:inline-block;border-radius:50%;cursor:pointer;background:#aaa;
+            -webkit-transform:scale(.48);
+               -moz-transform:scale(.48);
+                -ms-transform:scale(.48);
+                 -o-transform:scale(.48);
+                    transform:scale(.48);
+
+            -webkit-transition:all 1s;
+               -moz-transition:all 1s;
+                 -o-transition:all 1s;
+                    transition:all 1s;
+        }
+        .nav .i:after{content:"\e901";font-family:"icomoon";font-size:80%;color:#fff;opacity:0;}
+        .nav .i_cur{
+            -webkit-transform:scale(1);
+               -moz-transform:scale(1);
+                -ms-transform:scale(1);
+                 -o-transform:scale(1);
+                    transform:scale(1);
+        }
+        .nav .i_cur:after{opacity:1;}
+        .nav .i_back{background:#555;
+            -webkit-transform:rotateY(-180deg);
+               -moz-transform:rotateY(-180deg);
+                -ms-transform:rotateY(-180deg);
+                 -o-transform:rotateY(-180deg);
+                    transform:rotateY(-180deg);
+        }
+
+        /*优化*/
+        .photo{left:50%;top:50%;margin:-160px 0 0 -130px;}
+        .photo-wrap{
+            -webkit-transform-origin:left center;
+               -moz-transform-origin:left center;
+                -ms-transform-origin:left center;
+                 -o-transform-origin:left center;
+                    transform-origin:left center;
+        }
+        .photo_front .photo-wrap{
+            -webkit-transform:translate(0,0) rotateY(0deg);
+               -moz-transform:translate(0,0) rotateY(0deg);
+                -ms-transform:translate(0,0) rotateY(0deg);
+                 -o-transform:translate(0,0) rotateY(0deg);
+                    transform:translate(0,0) rotateY(0deg);
+        }
+        .photo_back .photo-wrap{
+            -webkit-transform:translate(260px,0) rotateY(180deg);
+               -moz-transform:translate(260px,0) rotateY(180deg);
+                -ms-transform:translate(260px,0) rotateY(180deg);
+                 -o-transform:translate(260px,0) rotateY(180deg);
+                    transform:translate(260px,0) rotateY(180deg);
+        }
+
+    </style>
+</head>
+<body onselectstart="return false;">
+    <div class="wrap" id="wrap">
+        <div class="photo photo_center photo_front" id="photo_{index}" onclick="Gallery.turn(this)"><!--负责位移，旋转-->
+            <div class="photo-wrap"><!--负责3d翻转-->
+                <div class="side side-front">
+                    <p class="image">
+                        <img src="images/{img}">
+                    </p>
+                    <p class="caption">{caption}</p>
+                </div>
+                <div class="side side-back">
+                    <p class="desc">{desc}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>

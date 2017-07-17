@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;}
+        .spline{width:80px;height:50px;margin:100px auto;text-align:center;}
+        .spline>div{display:inline-block;width:6px;height:100%;background:green;
+            -webkit-animation:strachdelay 1.2s infinite ease-in-out;
+        }
+        .spline .line2{-webkit-animation-delay:0.1s;}
+        .spline .line3{-webkit-animation-delay:0.2s;}
+        .spline .line4{-webkit-animation-delay:0.3s;}
+        .spline .line5{-webkit-animation-delay:0.4s;}
+        .spline2 .line2{-webkit-animation-delay:-1.1s;}
+        .spline2 .line3{-webkit-animation-delay:-1.0s;}
+        .spline2 .line4{-webkit-animation-delay:-0.9s;}
+        .spline2 .line5{-webkit-animation-delay:-0.8s;}
+        @-webkit-keyframes strachdelay {
+            0%,40%,100%{
+                -webkit-transform:scaleY(.4);
+            }
+            20%{
+                -webkit-transform:scaleY(1);
+            }
+         }
+    </style>
+</head>
+<body>
+    <div class="spline">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+        <div class="line4"></div>
+        <div class="line5"></div>
+    </div>
+    <hr/>
+    <div class="spline spline2">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+        <div class="line4"></div>
+        <div class="line5"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background:#ddd;
+		}
+		.container{
+			position: relative;
+			width:500px;
+			height:400px;
+			margin:50px auto 0;
+		}
+		.box{
+			width:100%;
+			height:100%;
+			background:#fff;
+		}
+		.box:before,.box:after{
+			position: absolute;
+			content: "";
+			background: #fff;
+			width: 40%;
+			height:94%;
+			top:15px;
+			box-shadow: 0 0 20px #000;
+			z-index: -1;
+		}
+		.box:before{
+			left:10px;
+			transform: rotate(-2deg);
+			-webkit-transform: rotate(-2deg);
+			-moz-transform: rotate(-2deg);
+		}
+		.box:after{
+			right:10px;
+			transform: rotate(-deg);
+			-webkit-transform: rotate(2deg);
+			-moz-transform: rotate(2deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+	</div>
+</body>
+</html>

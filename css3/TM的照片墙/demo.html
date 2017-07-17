@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.img-group{
+			width:400px;
+			height:400px;
+			margin:40px auto 0;
+			perspective: 800px;
+		}
+		.img-group>img{
+			width:100px;
+			height:100px;
+			float:left;
+		}
+		.btn{
+			width:100px;
+			font:16px/40px "微软雅黑";
+			padding:0 20px;
+			text-align:center;
+			color:#fff;
+			background:rgb(0,100,0);
+			margin:50px auto;
+			border-radius:5px;
+			box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+			cursor:pointer;
+		}
+		.btn:hover{
+			background:blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="img-group">
+		<img src="images/1.jpg">
+		<img src="images/2.jpg">
+		<img src="images/3.jpg">
+		<img src="images/4.jpg">
+		<img src="images/5.jpg">
+		<img src="images/6.jpg">
+		<img src="images/7.jpg">
+		<img src="images/8.jpg">
+		<img src="images/9.jpg">
+		<img src="images/10.jpg">
+		<img src="images/11.jpg">
+		<img src="images/12.jpg">
+		<img src="images/13.jpg">
+		<img src="images/14.jpg">
+		<img src="images/15.jpg">
+		<img src="images/16.jpg">
+	</div>
+	<div class="btn">查看效果</div>
+	
+	<script>
+		/**
+		 * 运动分析
+		 * 1.每个图片缓缓缩小 scale，随机
+		 * 2.图片从小变大，透明度逐渐变为0，（每张图片走完1，马上就走2，不是所有图片走完1，才一起走2）
+		 * 3.图片旋转，同时透明度从0到1（之前所有图片的1，2都走完，才走3）
+		 */
+		window.onload = function(){
+			var imgs = document.querySelectorAll('.img-group img'),
+		      allEnd = 0,
+		    canClick = true;
+	
+			document.querySelector('.btn').onclick = function(){
+				if(!canClick) return;
+				canClick = false;
+
+				var endNum = 0;//运动完成的数量
+
+				for(var i=0,len=imgs.length;i<len;i++){
+					(function(i){
+						setTimeout(function(){
+							montion(imgs[i],'10ms',function(){
+								this.style.transform = 'scale(0)';
+							},function(){
+								//第二个运动
+								montion(this,'1s',function(){
+									this.style.transform = 'scale(1)';
+									this.style.opacity = '0';
+								},function(){
+									if(++endNum === len){
+										rang();
+									}
+								});
+							});
+						},Math.random()*1000);
+					})(i);	
+				}
+			}
+
+			//第三个效果
+			function rang(){
+				for (var i = 0,len = imgs.length; i < len; i++) {
+					imgs[i].style.transition = '';
+					imgs[i].style.transform = 'rotateY(0deg) translateZ(-' + Math.random()*500 + 'px)';
+					(function(i){
+						setTimeout(function(){
+							montion(imgs[i],'2s',function(){
+								this.style.opacity = 1;
+								this.style.transform = 'rotateY(-360deg) translateZ(0)';
+							},function(){
+								if(++allEnd === len){
+									allEnd = 0;
+									canClick = true;
+								}
+							});
+						},Math.random()*1000);	
+					})(i);
+				}
+			}
+
+			/**
+			 * 运动对象
+			 * @param   target   运动对象
+			 * @param   time     运动时间
+			 * @param   doFn     运动属性函数
+			 * @param   callback 回掉函数
+			 */
+			function montion(target,time,doFn,callback){
+				target.style.transition = time;
+				doFn.call(target);
+
+				var called = false;
+
+				target.addEventListener('transitionend',function(){
+					if(!called){
+						callback && callback.call(target);
+						called = true;
+					}
+				},false);
+			}
+			
+		};
+
+	</script>
+</body>
+</html>

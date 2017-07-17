@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>径向菜单效果演示</title>
+    <style>
+        *{margin:0;padding:0;}
+        a{text-decoration:none;}
+        body{background:#292a38;font-family:"Microsoft Yahei";}
+        h1{text-align:center;color:#fff;margin-top:40px;}
+        .nav-wrap{position:relative;width:200px;height:200px;margin:120px auto 20px;border:2px dotted #4e5061;border-radius:100%;}
+        .nav-wrap .main-nav{width:40px;height:40px;line-height:40px;position:absolute;left:50%;top:50%;text-align:center;color:#fff;border:3px;text-shadow:1px 1px 0 #000;background:#15a5f3;font-size:12px;cursor:pointer;
+            /*margin:-20px 0  0 -20px;*/
+            transform:translate(-50%,-50%);
+        }
+        .nav-wrap nav{
+            position:absolute;
+            width:100%;
+            height:100%;
+            /*background:rgba(255,255,255,.3);*/
+            transform:scale(0);
+            opacity:0;
+            -webkit-transition: all 0.5s ease-out;
+            -moz-transition: all 0.5s ease-out;
+            -ms-transition: all 0.5s ease-out;
+            -o-transition: all 0.5s ease-out;
+            transition: all 0.5s ease-out;
+        }
+        .nav-wrap.active nav{
+            transform:scale(1);
+            opacity:1;;
+        }
+        .nav-wrap nav>a{
+            position:absolute;
+            width:30px;
+            height:30px;
+            line-height:30px;
+            background:#f44283;
+            text-align:center;
+            color:#fff;
+            border-radius:3px;
+            text-shadow:1px 1px 0 #000;
+            transform:translate(-50%,-50%);
+        }
+        /*.nav-wrap nav .nav-tiem1{top:0;left:0;}*/
+        /*.nav-wrap nav .nav-tiem2{top:0;left:100%;}*/
+        /*.nav-wrap nav .nav-tiem3{top:100%;left:100%;}*/
+        /*.nav-wrap nav .nav-tiem4{top:100%;left:0;}*/
+
+    </style>
+</head>
+<body>
+    <h1>径向菜单效果演示</h1>
+    <div class="nav-wrap">
+        <nav>
+            <a class="nav-tiem1">1</a>
+            <a class="nav-tiem2">2</a>
+            <a class="nav-tiem3">3</a>
+            <a class="nav-tiem4">4</a>
+            <a class="nav-tiem1">5</a>
+            <a class="nav-tiem2">6</a>
+            <a class="nav-tiem3">7</a>
+            <a class="nav-tiem4">8</a>
+        </nav>
+        <a class="main-nav">点我</a>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function(){
+            var isLocated = false;
+            $('.main-nav').on('click',function(){
+                var me = $(this),
+                    navWrap = me.parent(),
+                    navItems = navWrap.find('nav a');
+                if(!navWrap.hasClass('active')){
+                    if(!isLocated){
+                        //圆的半径
+                        var width = navWrap.width(),
+                                r = width/2;
+                        //圆形菜单的起始和终止角度
+                        var startAngle = 0,
+                              endAngle = 360;
+                        //两个子菜单间的夹角
+                        var total = navItems.length,
+                              gap = (endAngle-startAngle)/total;
+                        //技术按并确定每个子菜单最终位置
+                        $.each(navItems,function(index,item){
+                            //当前子菜单与x轴正向的夹角
+                            var myAngle = (startAngle + gap*index) * (Math.PI/180);
+
+                            //计算当前子菜单相对于在上角(0,0)的坐标(x,y);
+                            var myX = r + r * Math.cos(myAngle),
+                                myY = r + r * Math.sin(myAngle);
+
+                            //设置当前子菜单的位置
+                            $(this).css({left:myX+'px',top:myY+'px'});
+                        });
+                        isLocated = true;
+                    }
+                    navWrap.addClass('active');
+                }else{
+                    navWrap.removeClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

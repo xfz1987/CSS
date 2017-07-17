@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/*3D效果容器*/
+		.cardflip{
+			width:200px;
+			height:260px;
+			position: relative;
+			perspective: 800;
+			-webkit-perspective: 800;
+		}
+		.cardflip .card{
+			width:100%;
+			height:100%;
+			position:absolute;
+			transform-style:preserve-3d;
+			-webkit-transform-style:-webkit-preserve-3d;
+			transition:all 1s;
+			-webkit-transition:all 1s;
+		}
+		.cardflip .card>div{
+			position:absolute;
+			width:100%;
+			height:100%;
+			text-align: center;
+			font-size: 120px;
+			color: #fff;
+			line-height:2;
+			backface-visibility: hidden;
+
+		}
+		.cardflip .card .front{
+			background: red;
+		}
+		.cardflip .card .back{
+			background:blue;
+			transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+		}
+		.cardflip .card.flipped{
+			transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="cardflip">
+		<div class="card" id="card">
+			<div class="front">1</div>
+			<div class="back">2</div>
+		</div>
+	</div>
+	<script>
+		function flip(){
+			var that = card;
+			var isfront = true;
+			return function(){
+				isfront ? that.classList.add('flipped') : that.classList.remove('flipped');
+				isfront = !isfront;
+			}
+		} 
+		var card = document.getElementById('card');
+		var fp = flip();
+		card.onclick = fp;
+	</script>
+</body>
+</html>

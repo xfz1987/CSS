@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<head>
+<title>【荐】CSS实现漂亮实用带箭头的流程图_网页代码站(www.webdm.cn)</title>
+<style type="text/css">
+.help_step_box{
+	background:#f1f7e4;
+	height:55px;
+	overflow:hidden;
+	border-top:1px solid #FFF;
+}
+.help_step_item{
+	float:left;
+	height:55px;
+	line-height:55px;
+	padding:0 25px 0 45px;
+	cursor:pointer;
+	position:relative;
+	font-size:14px;
+	font-weight:bold;
+}
+.help_step_num{
+	width:19px;
+	height:19px;
+	line-height:19px;
+	position:absolute;
+	text-align:center;
+	top:18px;
+	left:20px;
+	font-size:16px;
+	font-weight:bold;
+	background:url(images/num.png);
+	color:#156600;
+}
+.help_step_set{
+	background:#27a806;
+	color:#FFF;
+}
+.help_step_set .triangle{
+	width:0;
+    height:0;
+    border-top: 5px solid transparent;
+    border-left: 5px solid #fff;
+    border-bottom: 5px solid transparent;
+	position:absolute;
+	top:22px;
+}
+
+.help_step_set .help_step_left{
+	left:0;
+}
+.help_step_set .help_step_right{
+	border-left-color:#27a806;
+	right:-5px;
+}
+</style>
+</head>
+<body>
+<div class="help_wrap">
+  <div class="help_step_box">
+    <div class="help_step_item help_step_set">
+      <div class="help_step_num">1</div>
+      拆开方便面
+      <div class="triangle help_step_right"></div>
+    </div>
+    <div class="help_step_item">
+      <div class="triangle help_step_left"></div>
+      <div class="help_step_num">2</div>
+      取出调料包
+      <div class="triangle help_step_right"></div>
+    </div>
+    <div class="help_step_item">
+      <div class="triangle help_step_left"></div>
+      <div class="help_step_num">3</div>
+      加热水泡3~5分钟
+      <div class="triangle help_step_right"></div>
+    </div>
+    <div class="help_step_item">
+      <div class="triangle help_step_left"></div>
+      <div class="help_step_num">4</div>
+      加入调料并搅拌
+      <div class="triangle help_step_right"></div>
+    </div>
+    <div class="help_step_item">
+      <div class="triangle help_step_left"></div>
+      <div class="help_step_num">5</div>
+      可以吃了
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/jquery.min.js"></script>
+<script>
+$(function(){
+	$('.help_step_item').on('click',function(){
+		$('.help_step_item.help_step_set').index() != $(this).index() && $(this).addClass('help_step_set').siblings('.help_step_item.help_step_set').removeClass('help_step_set');
+
+	});
+});
+</script>
+</body>
+</html>

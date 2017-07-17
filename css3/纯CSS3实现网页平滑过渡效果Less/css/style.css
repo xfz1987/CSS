@@ -1,0 +1,185 @@
+@charset 'utf-8';
+@font-face {
+  font-family: "raphaelicons";
+  src: url('fonts/raphaelicons-webfont.eot') formate('eot'), url('fonts/raphaelicons-webfont.svg') formate('svg'), url('fonts/raphaelicons-webfont.ttf') formate('ttf'), url('fonts/raphaelicons-webfont.woff') formate('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: Georgia,serif;
+  background: #ddd;
+  font-weight: 400;
+  font-size: 15px;
+  color: #333;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+a {
+  color: #555;
+  text-decoration: none;
+}
+.st-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Josefin Slab', 'Myriad Pro', Arial;
+}
+.st-container input,
+.st-container a {
+  width: 20%;
+  height: 34px;
+  position: fixed;
+  bottom: 0;
+}
+.st-container input {
+  opacity: 0;
+  filter: alpha(opacity=0*100);
+  z-index: 2;
+  cursor: pointer;
+}
+.st-container input:hover + a {
+  background: #ad244f;
+}
+.st-container a {
+  z-index: 0;
+  font-weight: 700;
+  font-size: 16px;
+  background: #e23a5e;
+  text-align: center;
+  line-height: 34px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(151, 24, 34, 0.2);
+}
+.st-container .c-1,
+.st-container .c-1 + a {
+  left: 0;
+}
+.st-container .c-2,
+.st-container .c-2 + a {
+  left: 20%;
+}
+.st-container .c-3,
+.st-container .c-3 + a {
+  left: 40%;
+}
+.st-container .c-4,
+.st-container .c-4 + a {
+  left: 60%;
+}
+.st-container .c-5,
+.st-container .c-5 + a {
+  left: 80%;
+}
+.st-container input:checked + a {
+  background: #821134;
+}
+.st-container input:checked + a:after {
+  content: "";
+  position: absolute;
+  border-width: 20px;
+  border-color: transparent transparent #821134 transparent;
+  border-style: dashed dashed solid dashed;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -20px;
+}
+.st-container .st-scroll,
+.st-container .st-panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: -1;
+}
+.st-container .st-scroll {
+  left: 0;
+  top: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+.st-container .st-panel {
+  background: #fff;
+  overflow: hidden;
+}
+.st-container .c-1:checked ~ .st-scroll {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.st-container .c-2:checked ~ .st-scroll {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.st-container .c-3:checked ~ .st-scroll {
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  transform: translateY(-200%);
+}
+.st-container .c-4:checked ~ .st-scroll {
+  -webkit-transform: translateY(-300%);
+  -moz-transform: translateY(-300%);
+  -ms-transform: translateY(-300%);
+  -o-transform: translateY(-300%);
+  transform: translateY(-300%);
+}
+.st-container .c-5:checked ~ .st-scroll {
+  -webkit-transform: translateY(-400%);
+  -moz-transform: translateY(-400%);
+  -ms-transform: translateY(-400%);
+  -o-transform: translateY(-400%);
+  transform: translateY(-400%);
+}
+.st-panel .st-desc {
+  width: 200px;
+  height: 200px;
+  background: #fa96b5;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -100px;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+  -moz-transform: translateY(-50%) rotate(45deg);
+  -ms-transform: translateY(-50%) rotate(45deg);
+  -o-transform: translateY(-50%) rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
+}
+[data-icon]:after {
+  font-family: "raphaelicons";
+  width: 200px;
+  height: 200px;
+  content: attr(data-icon);
+  color: #fff;
+  font-size: 90px;
+  text-align: center;
+  line-height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: rotate(-45deg) translateY(25%);
+  -moz-transform: rotate(-45deg) translateY(25%);
+  -ms-transform: rotate(-45deg) translateY(25%);
+  -o-transform: rotate(-45deg) translateY(25%);
+  transform: rotate(-45deg) translateY(25%);
+  margin: -100px 0 0 -100px;
+}

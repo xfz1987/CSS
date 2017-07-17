@@ -1,0 +1,114 @@
+@charset "utf-8";
+/*Gloable*/
+*{margin:0;padding:0;}
+
+figure{position:relative;width:33.33%;height:350px;overflow:hidden;float:left;}
+figure>figcaption{position:absolute;left:0;top:0;padding:20px;color:#fff;font-family:"微软雅黑";}
+figure>img{opacity:1;
+    -webkit-transition:all .5s;
+         -o-transition:all .5s;
+            transition:all .5s;
+}
+
+@media screen and (max-width:600px){
+    figure{width:100%;}
+}
+@media screen and (min-width:601px) and (max-width:1000px){
+    figure{width:50%;}
+}
+
+@media screen and (min-width:1001px){
+    figure{width:33.33%;}
+}
+
+.f1{background:#2f0000;}
+.f1>figcaption p{background:#fff;color:#333;margin:3px;text-align:center;
+    -webkit-transform:translate(-120px,0);
+        -ms-transform:translate(-120px,0);
+         -o-transform:translate(-120px,0);
+            transform:translate(-120px,0);
+}
+.f1>figcaption p,h2,span,div{
+    -webkit-transition:all .5s;
+    -o-transition:all .5s;
+    transition:all .5s;
+}
+.f1:hover>figcaption p{
+    -webkit-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+         -o-transform:translate(0,0);
+            transform:translate(0,0);
+}
+.f1:hover>figcaption p:nth-of-type(1){
+    -webkit-transition-delay:0.05s;
+         -o-transition-delay:0.05s;
+            transition-delay:0.05s;
+}
+.f1:hover>figcaption p:nth-of-type(2){
+    -webkit-transition-delay:0.1s;
+         -o-transition-delay:0.1s;
+            transition-delay:0.1s;
+}
+.f1:hover>figcaption p:nth-of-type(3){
+    -webkit-transition-delay:0.15s;
+         -o-transition-delay:0.15s;
+            transition-delay:0.15s;
+}
+.f1:hover>img{opacity:.8;
+    -webkit-transform:translate(-50px,0);
+        -ms-transform:translate(-50px,0);
+         -o-transform:translate(-50px,0);
+            transform:translate(-50px,0);
+}
+
+.f2{background:#030;}
+.f2>figcaption{width:100%;height:100%;padding:0;}
+.f2>figcaption>div{border:2px solid #fff;width:80%;height:80%;position:absolute;left:10%;top:10%;
+    -webkit-transform:translate(0,-350px) rotate(0);
+        -ms-transform:translate(0,-350px) rotate(0);
+         -o-transform:translate(0,-350px) rotate(0);
+            transform:translate(0,-350px) rotate(0);
+}
+.f2>figcaption h2{margin:15% 0 0 15%;
+    opacity:0;
+    -webkit-transform:translate(0,50px);
+        -ms-transform:translate(0,50px);
+         -o-transform:translate(0,50px);
+            transform:translate(0,50px);
+}
+.f2>figcaption p{margin-left:15%;}
+
+.f2:hover>figcaption>div{
+    -webkit-transform:translate(0,0) rotate(359deg);
+        -ms-transform:translate(0,0) rotate(359deg);
+         -o-transform:translate(0,0) rotate(359deg);
+            transform:translate(0,0) rotate(359deg);
+}
+.f2:hover>figcaption>h2{
+    opacity:1;
+    -webkit-transform:translate(0,0);
+        -ms-transform:translate(0,0);
+         -o-transform:translate(0,0);
+            transform:translate(0,0);
+}
+.f2:hover>img{
+    opacity:.5;
+    -webkit-transform:translate(-50px,0);
+        -ms-transform:translate(-50px,0);
+         -o-transform:translate(-50px,0);
+            transform:translate(-50px,0);
+}
+
+.f3>figcaption h2,.f3>figcaption p{
+    -webkit-transform:skew(90deg);
+        -ms-transform:skew(90deg);
+         -o-transform:skew(90deg);
+            transform:skew(90deg);
+}
+.f3:hover>figcaption>img{opacity:.5;}
+.f3:hover>figcaption h2,.f3:hover>figcaption p{
+    -webkit-transform:skew(0);
+        -ms-transform:skew(0);
+         -o-transform:skew(0);
+            transform:skew(0);
+}

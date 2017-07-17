@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*创建三维场景
+         * 1.在顶端盒子设置-webkit-perspective:800;表示屏幕离场景Z轴的距离
+         * 2.设置-webkit-perspective-origin:50% 50%;表示以屏幕中央的视角观看三维场景
+         * 3.设置-webkit-transform-style:preserve-3d;表示将transform支持三维效果
+         */
+        .exp{-webkit-perspective:800;-webkit-perspective-origin:50% 50%;-webkit-transform-style:-webkit-preserve-3d;}
+        .block{width:500px;height:500px;background:blue;margin:0 auto;-webkit-transform:rotateY(45deg);}
+    </style>
+</head>
+<body>
+    <div class="exp">
+        <div class="block"></div>
+    </div>
+</body>
+</html>

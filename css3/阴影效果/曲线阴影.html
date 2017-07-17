@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>曲线阴影</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{font-family:Arial;font-size:20px;}
+        ul{list-style:none;}
+        .wrap{width:70%;height:250px;padding:10px;margin:50px auto;background:#fff;}
+        .wrap h1{font-size:14px;line-height:20px;}
+        .effect{-webkit-box-shadow:0 1px 4px rgba(0,0,0,.3),0 0 40px rgba(0,0,0,.3) inset;
+                   -moz-box-shadow:0 1px 4px rgba(0,0,0,.3),0 0 40px rgba(0,0,0,.3) inset;
+                     -o-box-shadow:0 1px 4px rgba(0,0,0,.3),0 0 40px rgba(0,0,0,.3) inset;
+                        box-shadow:0 1px 4px rgba(0,0,0,.3),0 0 40px rgba(0,0,0,.3) inset;
+                position:relative;
+        }
+        .effect:after,.effect:before{
+            content:'';
+            background:red;
+            position:absolute;
+            top:50%;bottom:0;
+            left:10px;right:10px;
+            -webkit-box-shadow:0 0 20px rgba(0,0,0,.8);
+               -moz-box-shadow:0 0 20px rgba(0,0,0,.8);
+                 -o-box-shadow:0 0 20px rgba(0,0,0,.8);
+                    box-shadow:0 0 20px rgba(0,0,0,.8);
+            border-radius:100px/10px;
+            z-index:-1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap effect">
+        <h1>实现原理:</h1>
+        <p>1.给主体box加内外阴影，内阴影x、y偏移都设为0，表示四个角都有阴影</p>
+        <p>2.在box前后插入两个相同的box，绝对定位，浮层下方</p>
+        <p>3.给新插入的box设置圆角，border-radius:100px/10px,这么写表示水平方向半径100px，垂直方向10px，这样圆弧就出来了</p>
+        <p>4.给这两个box设置外阴影</p>
+        <p>这样，圆弧阴影效果就出来了</p>
+    </div>
+</body>
+</html>
