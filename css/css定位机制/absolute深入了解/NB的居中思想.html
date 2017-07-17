@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>独立absolute实现居中是想</title>
+    <style>
+        /*以前的方式*/
+        .ago{width:400px;height:200px;background:#ccc;position:relative;}
+        .mid{width:50px;height:50px;background:red;position:absolute;left:50%;top:50%;margin:-25px 0 0 -25px;}
+
+        /*NB的方式*/
+        .nb{width:400px;height:200px;background:#ccc;text-align:center;overflow:hidden;}
+        .middle{display:inline-block;*display:inline;*zoom:1;width:50px;height:50px;background:green;position:absolute;margin-left:-38px;margin-top:15px;}
+        /*思想:将内部元素转化成行内元素，再在要居中的元素前加个空格，相当一个行内元素，
+               然后将父元素text-align:center;把行内元素居中显示了
+               然后将要居中的元素absolute,由于独立使用absolute的跟性特性，它会脱离文档流，并且跟在空格的后面
+               最后通过调整margin-left的值进行居中
+        */
+
+        /*吊爆了的方式(>IE7才支持)*/
+        .db{width:400px;height:200px;background:#ccc;margin:0 auto;}
+        .dm{width:50px;height:50px;background:pink;
+            position:absolute;left:0;right:0;margin:0 auto;}
+    </style>
+</head>
+<body>
+    <h1>以前的方式</h1>
+    <div class="ago">
+        <div class="mid"></div>
+    </div>
+    <br><br>
+
+    <h1>NB的方式</h1>
+    <div class="nb">
+        &nbsp;<div class="middle"></div>
+    </div>
+    <br><br>
+
+    <h1>吊爆了的方式</h1>
+    <div class="db">
+        <div class="dm"></div>
+    </div>
+</body>
+</html>

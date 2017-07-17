@@ -1,0 +1,70 @@
+1.定义
+  行高:两行文字baseline(基线)之间的距离
+
+2.为何line-height可以让单行文本垂直居中
+  其实并没有垂直居中，除非将font-size:0;
+
+3.line-height的高度原理（可以先看看行内盒子的原理）
+  * 行内元素的高度是line-height决定的，而不是由font-size决定的，
+  * 行高由于其继承性，影响无处不在，即使单行文本也不例外
+  * 行高只是幕后黑手，高度的表现不是行高，而是内容区域和行间距
+    * 内容区域高度+行间距 = 行高
+      内容区域高度至于字号以及字体有关，与line-height无关
+
+4.比较有用的属性值
+  * line-height:1.5;\line-height:150%;\line-height:1.5em;
+    实际的line-height: font-size*1.5，适合页面自适应
+
+    * 区别:
+      * 1.5: 所有可继承元素根据自身的font-size重计算行高
+      * 150%/1.5em: 当前元素根据font-size计算行高，计算给下面的元素
+
+        分析: div的行高: line-height:24px*1.5,span的行高 line-height:60px*1.5
+       <div style="background:#eee;font-size:24px;line-height:1.5;">
+          <span style="font-size:60px;">测试1</span>
+       </div>
+
+       分析: div的行高: line-height:24px*1.5,span继承div的行高 line-height:24px*1.5
+       <div style="background:#eee;font-size:24px;line-height:150%;">
+           <span style="font-size:60px;">测试2</span>
+       </div>
+
+  * 继承性（IE8+）
+    input框等元素默认行高是normal，使用inherit可以让文本框样式可控性更强
+
+  * 使用经验
+    body{font-size:14px;line-height:1.4286}
+
+5.line-height和图片的表现
+  * 行高不会影响图片实际占据的高度
+  * 消除图片底部间隙的方法
+    a.图片块状化 - 无基线对齐
+      img{display:block;}
+    b.图片底线对齐
+      img{vertical-align:bottom;}
+    c.行高足够小 - 基线位置上移
+      .box{line-height:0;}
+
+ 6.line-height的实际应用
+   * 大小不固定的图片垂直居中（IE8+）
+     .box{line-height:300px;text-align:center;}
+     .box>img{vertical-align:middle;/*基线网上1/2高度*/}
+
+   * 多行文本垂直居中（IE8+）
+     .box{line-height:250px;text-align:center;}
+     .box>.text{display:inline-block;line-height:normal;text-align:left;vertical-align:middle;}
+     /* 重置外部继承的line-height、text-align */
+
+   * 代替height，避免IE6/IE7下的haslayout
+     <span class="out">
+        <span class="in1">height:36px;</span>
+     </span>
+     <span class="out">
+        <span class="in2">line-height:36px;</span>
+     </span>
+
+     .out{display:inline-block;/*或float:left*/}
+     .in1{display:block;height:36px;}
+     .in2{display:block;line-height:36px;}
+
+     结果:在IE6/IE7下，out容器的 inline-block,给变成了block

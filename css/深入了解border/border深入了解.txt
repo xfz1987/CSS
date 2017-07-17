@@ -1,0 +1,29 @@
+* border-width 不支持百分比
+  reason: 从语义上讲，就是不支持，不符合逻辑
+  类似的还有：outline,box-shadow,text-shadow...
+
+* 支持关键字: thin  medium(默认值)  thick
+  thin: 1px   mediu: 3px   thick : 5px
+
+* border-style: solid dashed dotted double(双线)
+  
+  例如：double: 60px double
+       会将60px三等分，两个线都为20px,中间的旁白为20px
+
+* border-color: 默认颜色就是color
+  类似的还有box-shadow,text-shadow....
+
+  实际上:只要一个color hover变化，就文字、边框一起变活
+
+* border与background定位
+  background-position:只能相对左上角数值定位，不能相对右下角
+  100% 右侧定位不计算border区域
+
+* border 的透明边框 足够兼容
+  实现三角形、体型
+  不使用图片，实现单复选框:边框使用哦哦给盒子阴影，原先border变透明来增加点击区域
+
+* border布局上的应用
+  * 等高布局 比 用marign和padding 好 ,但不支持百分比宽度
+    原理
+

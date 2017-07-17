@@ -1,0 +1,112 @@
+不定宽度的块状元素有三种方法居中（这三种方法目前使用的都比多）：
+
+加入 table 标签
+设置 display;inline 方法
+设置 position:relative 和 left:50%;
+
+（一）
+第一步：为需要设置的居中的元素外面加入一个 table 标签 ( 包括 <tbody>、<tr>、<td> )。
+
+第二步：为这个 table 设置“左右 margin 居中”（这个和定宽块状元素的方法一样）。
+
+
+html代码：                                  css代码：                  
+					                               
+<div>					    <style>                    
+<table>					    table{                     
+  <tbody>				        margin:0 auto;         
+    <tr><td>				    }                          
+    <ul>				                               
+        <li><a href="#">1</a></li>	    ul{                        
+        <li><a href="#">2</a></li>	        list-style:none;       
+        <li><a href="#">3</a></li>	        margin:0;              
+    </ul>				        padding:0;}            
+    </td></tr>				    li{                        
+  </tbody>				        float:left;            
+</table>				        display:inline;        
+</div>					        margin-right:8px;}     
+					    </style>                   
+
+---------------------------------------------------------------------------------
+（二）
+改变块级元素的 display 为 inline 类型，然后使用 text-align:center 来实现居中效果
+
+html代码：                                   css代码：                      
+					                                    
+<body>					     <style>                        
+<div class="container">			     .container{                    
+    <ul>				         text-align:center;         
+        <li><a href="#">1</a></li>	     }                              
+        <li><a href="#">2</a></li>	     .container ul{                 
+        <li><a href="#">3</a></li>	         list-style:none;           
+    </ul>				         margin:0;                  
+</div>					         padding:0;                 
+</body>					         display:inline;            
+					     }                              
+					     .container li{                 
+					         margin-right:8px;          
+					         display:inline;            
+					     }                              
+					     </style>    
+这种方法相比第一种方法的优势是不用增加无语义标签，简化了标签的嵌套深度，
+但也存在着一些问题：它将块状元素的 display 类型改为 inline，变成了行内元素，
+所以少了一些功能，比如设定长度值。					     
+
+---------------------------------------------------------------------------------
+（三）
+通过给父元素设置 float，然后给父元素设置 position:relative 和 left:50%，
+子元素设置 position:relative 和 left:-50% 来实现水平居中。
+
+html代码：
+
+<div class="container">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+    </ul>
+</div>
+
+css代码：
+
+<style>
+.container{
+    float:left;
+    position:relative;
+    left:50%
+}
+
+.container ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    
+    position:relative;
+    left:-50%;
+}
+.container li{float:left;display:inline;margin-right:8px;}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

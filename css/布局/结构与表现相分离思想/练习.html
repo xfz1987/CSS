@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图片背景</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style type="text/css">
+        body{ margin:0;}
+        div{background:#460E29;width:700px;padding:20px;
+        /*解决换行间隙bug问题*/font-size:0;
+        }
+        img{width:95px;height:95px;background:url(images/bb.jpg) no-repeat;margin-right:10px;padding:1px 20px 37px 30px;}
+    </style>
+</head>
+<body>
+    <!--
+        设计思想:
+           也就是说，一张图有100平方米，上面还有一张图是50平方米。
+           从盒子模型来说，给我们看的只有这50平方米，
+           我们想看到更多，那么就扩大这个盒子，增加内填充.盒子就显示更多地方
+
+           如果里面的内容不同，比用在背景的div里面调整商品的位置要好的很多，因为要增加额外标签
+    -->
+    <div>
+        <img src="images/m.jpg" />
+        <img src="images/m.jpg" />
+        <img src="images/m.jpg" />
+        <img src="images/m.jpg" />
+    </div>
+</body>
+</html>

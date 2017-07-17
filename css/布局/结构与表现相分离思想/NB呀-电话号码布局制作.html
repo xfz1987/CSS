@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>NB的写法</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style>
+        .telBar{
+            height:70px;
+            background:url(images/bg.png) no-repeat;;
+            min-width:100%;
+        }
+        .tel{
+            height:56px;
+            line-height:56px;
+            /*
+            * 要将电话号码放置在星号后面
+            * 常规做法: 将电话绝对定位
+            * NB的做法: 设置文字的缩进
+            */
+            text-indent:865px;
+            min-width:1000px;
+        }
+        .linBtn{width:88px;height:29px;line-height:29px;font-size:14px;text-align:center;color:#fff;background:#d3dede;
+            margin-left: 20px; text-indent:0;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="telBar">
+        <div class="tel">4006-553-64 <a class="linBtn" href="#">我要建站</a></div>
+    </div>
+</body>
+</html>

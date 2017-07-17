@@ -1,0 +1,36 @@
+* 使用字体实现图标的好处
+  * 灵活性: 轻松改变图标的颜色和其他css小火
+  * 可扩展性: 改变图标的大小，就像改变字体大小一样容易
+  * 矢量性: 缩放图标不会影响清晰度
+  * 兼容性：支持所有浏览器
+  * 本地使用:
+
+* 图标工具
+  * IcoMoon (https://icomoon.io)
+
+* 如何使用小图标
+ 1.从图标工具网站下载字体文件压缩包
+ 2.从压缩包里面讲fonts文件夹拷贝到工程中(为了保持兼容性，将所有字体文件都拷贝)
+ 3.在css文件中使用@font-face
+ @font-face{
+    font-family:<family-name>;
+    src:[<url>[format(<string>#)]?|<font-face-name]#;
+ }
+ 4.使用font
+ .className{
+   font-family:<family-name>;
+
+    /* Better Font Rendering :设置字体的光滑性属性、抗锯齿属性=========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+ }
+ 5.①
+   在html,作为文本节点，复制 emo图标的16进制数，例如: e900 ，前面加上 &#x,
+   即文本节点内容为 &#xe900
+
+   ②
+
+   使用第二种方式好，可以随时调整，而不必要去修改html，只修改css
+   .classNanme2:before{
+      content:"\e900";/*需加上反写杠用来转义*/
+   }

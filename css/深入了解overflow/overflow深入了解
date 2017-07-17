@@ -1,0 +1,58 @@
+1.如果overflow-x与overflow-y值不同
+  其中一个赋值为visiable,另一个赋值scroll/auto/hidden,那么visiable会重置为auto
+
+2.overflow:visible妙用
+  IE7下，文字越多，按钮两侧的padding留白就越大！-bug
+  解决办法:<button sytle="overflow:visible"></button>
+
+3.overflow与滚动条
+  无论什么浏览器，默认滚动条均来自html,而不是body
+  IE7默认-html{overflow-y:scroll;}
+  IE8+默认-html{overflow:auto;}
+  去除页面默认滚动条: html{overflow:hidden;}
+  注意:下面的写法是冗余的
+  html,body{overflow:hidden;},滚动条与body无关，给body设置overflow无意义
+
+  * 获得滚动条滚动的高度
+    * chrome : document.body.scrollTop;
+    * 其他   : document.documentElement.scrollTop;
+    * 兼容   : document.documentElement.scrollTop || document.body.scrollTop;
+
+  * overflow的padding-bottom缺失现象（只有chrome不会出现）
+    这样就照成不一样的scrollHieight
+
+  * 滚动条的宽度机制
+    滚动条会占用容器的可用宽度或高度，所以在布局时要使用自适应或预留滚动条的宽度
+
+    解决水平居中跳动问题的办法:
+     .container{
+        width:100%;
+        padding-left:calc(100vw-100%);/*100vw是浏览器宽度，100%是可用内容宽度，相减就是滚动条的宽度*/
+     }
+
+  * 自定义滚动条
+    * -webkit
+      ::webkit-scrollbar{width:8px;height:8px;}/*血槽高度*/
+      ::webkit-scrollbar-thumb{background-color:rgba(0,0,0,.3);}/*拖动条*/
+      ::webkit-scrollbar-track{background-color:#ddd;border-radius:6px;}/*背景槽*/
+    * IE浏览器: 去他妈的
+
+  * ios原生滚动超边界效果
+
+4.overflow与absolut
+  父元素overflow:hidden/scroll，内部元素absolute，会产生失效
+
+5.resize拉伸(css3)
+  resize:both; - 水平垂直两边拉
+  resize:horizontal; - 水平拉
+  resize:vertical; - 垂直拉
+  注意: 此声明要想起作用，元素的overflow不能是visible
+
+6.text-overflow:ellipsis 与 overflow:hidden 一起使用
+  实现文本溢出省略号显示
+
+7.overflow与锚点应用
+  滚床单(锚点的本质:改变容器的滚动高度)条件:容器可滚动且锚点元素在容器内部
+
+  比较牛逼的做法:实现选项卡（无js，兼容性嗷嗷地）
+  注意:适用场景，页面为单屏页面，否也会影响html的滚动条

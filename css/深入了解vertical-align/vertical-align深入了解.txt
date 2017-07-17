@@ -1,0 +1,40 @@
+1.属性
+  a.线类 : baseline(默认),top,middle,bottom
+  b.文本类 : text-top,text-bottom
+  c.上标下标类 : sub,super
+  d.数值百分比类 ：px,em,%
+    ①px
+    正值:会在baseline对齐基础上向上偏移数值的大侠
+    负值:会在baseline对齐基础上向下偏移数值的大侠
+    ②%: 百分比值是相对于line-height计算的
+     IE6/IE7下vertical-align百分比不支持小数line-height
+     【vertical-align与line-height的关系】
+      line-height:30px;vertical-align:-10%;
+      (相当于line-height:30px;vertical-align:-3px;)
+
+
+
+2.vertical-align起作用的前提条件
+  a.默认情况下，应用于inline水平以及table-cell元素
+    * inline：img/span/strong/em...
+      inline-block:input(WE8+),button(IE8+)
+    * table-cell：td
+  b.display更改元素的显示水平
+  c.css声明间接改变元素的显示水平
+
+3.对立属性值
+  vertical-align对齐与相邻元素无关，
+  top/bottom/middle 是以外部盒子为基准的对齐
+  例如图片vertical-align:top，我们看到的是文字上去了，与图片上面对齐
+  其实是: 图片的baseline，top上去，图片被推了下去
+
+4.糟糕的兼容性(top/middle/bottom)
+  对不齐的时候,给文字元素display:inline-block;
+
+5.实际应用
+  * 小图标和文字的对齐
+    img{vertical-align:负值}
+  * 不定尺寸图片或多行文字的垂直居中
+    第一步:主体元素inline-block
+    第二步:创建0宽度100%高度辅助元素,inline-block
+    第三步:图片与文字同时vertical-align:middle;

@@ -1,0 +1,41 @@
+1.float的历史
+  初衷是为了图片的文字环绕，将img设置float
+
+2.破坏性与包裹性
+  a.父元素没有设置高度，内部元素浮动后，服务元素的高度被破坏了，可以将其父元素设置overflow:hidden;
+    记住:这不是bug，这是标准，特性使然
+      （初衷就是为了文字环绕，如果高度不塌陷，下面面的文字怎么上来环绕呀！）
+  b.float会使元素block块状化
+  c.去空格化
+
+
+3.清除浮动带来的影响
+  a.clear
+    * 底部挂一个div
+    * after伪元素底部生成
+
+  b.BFC/haslayout
+    overflow:hidden/scroll(IE7+)
+    display:inline-block/table-cell(IE8+)
+    width/height/zoom:1(IE6/IE7)
+
+  c.权衡后的方案
+    将fix类添加到内部元素有浮动的盒子上，别乱用，否则IE6/IE7会出bug
+    .fix:after{content:"";display:block;height:0;overflow:hidden;clear:both;}
+    .fix{*zoom:1;}
+
+    或者
+    .fix:after{content:"";display:table;clear:both;}
+    .fix{*zoom:1;}
+
+4.float兼容性（合理使用浮动，且用且珍惜）
+  * IE6:
+    a.双倍边距bug
+    b.跟随浮动元素3px的bug
+    c.浮动元素后面跟随的斜体文字有下倾的bug
+  *IE7:（不要问为什么，这是灵异现象）
+    a.含clear的浮动元素包裹不正确bug
+    b.浮动元素倒数2个元素莫名垂直间距bug
+    c.浮动元素最后一个字符重复bug
+    d.浮动元素楼梯排列bug
+    e.浮动元素和文本不在同一行的bug

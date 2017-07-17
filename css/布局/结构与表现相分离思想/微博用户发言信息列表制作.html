@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>高中低三个级别的人实现的代码</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style>
+        /*初级思路*/
+        .demo1{width:600px;position:relative;overflow:hidden;/*解决浮动的影响*/}
+        .demo1 .left{width:100px;float:left;}
+        .demo1 .left img{margin-left:25px;}
+        .demo1 .right{width:458px;padding:20px;float:right;background:#9cf;border:1px solid #ccc;}
+        .demo1 .right p{font-size:12px;line-height:25px;margin-top:10px;}
+        .demo1 span{position:absolute;right:20px;top:10px;font-size:12px;}
+
+        /*中级思路*/
+        .demo2{width:600px;position:relative;overflow:hidden;}
+        .demo2  img{float:left;margin-left:25px;}
+        .demo2 .right{width:458px;padding:20px;float:right;background:#9cf;border:1px solid #ccc;}
+        .demo2 .right p{font-size:12px;line-height:25px;margin-top:10px;}
+        .demo2 span{position:absolute;right:20px;top:10px;font-size:12px;}
+
+        /*高级思路：真正的表现与结构分开的思想*/
+        .demo3{width:458px;padding:20px;margin-left:100px;background:#9cf;border:1px solid #ccc;/*position:relative;*/}
+        .demo3 img{position:absolute;/*top:0;left:-75px;*/margin:-20px 0 0 -95px;}
+        .demo3 p{font-size:12px;line-height:25px;margin-top:10px;}
+        .demo3 span{position:absolute;right:20px;top:10px;font-size:12px;}
+
+
+    </style>
+</head>
+<body>
+    <!--初级思路-->
+    <div class="demo1">
+        <div class="left">
+            <img src="images/1.jpg"/>
+        </div>
+        <div class="right">
+            <h6>海绵宝宝</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio explicabo incidunt maiores nam quibusdam recusandae totam? A architecto, enim error eveniet fuga iste itaque laboriosam quaerat reiciendis, tempora voluptas voluptatum!</p>
+            <span>10分钟之前</span>
+        </div>
+    </div>
+    <br/><br/>
+    <!--中级思路-->
+    <div class="demo2">
+        <img src="images/1.jpg"/>
+        <div class="right">
+            <h6>海绵宝宝</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio explicabo incidunt maiores nam quibusdam recusandae totam? A architecto, enim error eveniet fuga iste itaque laboriosam quaerat reiciendis, tempora voluptas voluptatum!</p>
+            <span>10分钟之前</span>
+        </div>
+    </div>
+    <br/><br/>
+    <!--高级思路：，
+        先考虑设计图中的文字内容和内容模块之间的关系，
+        重点放在编写html结构和语义化，然后考虑布局和表现形式。
+    -->
+    <div class="demo3">
+        <img src="images/1.jpg"/>
+        <h6>海绵宝宝</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio explicabo incidunt maiores nam quibusdam recusandae totam? A architecto, enim error eveniet fuga iste itaque laboriosam quaerat reiciendis, tempora voluptas voluptatum!</p>
+        <span>10分钟之前</span>
+    </div>
+
+
+</body>
+</html>

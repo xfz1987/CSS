@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>单选按钮美化</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style>
+        body{font:12px/22px "微软雅黑";}
+        .type{width:400px;height:40px;border:1px solid #DFDFDF;margin:30px auto;}
+        .type dl{height:40px;line-height:40px;}
+        .type dl dt,.type dl dd{float:left;}
+        .type dl{padding-left:15px;}
+        .type dl dd{float:left;margin:0 10px 0 8px;}
+        .type dl dd a{color:#000;display:block;position:relative;padding-left:40px;}
+        .type dl dd a:hover{color:#c00;text-decoration:underline;}
+        .type dl dd a b{width:33px;height:33px;display:block;position:absolute;top:6px;left:0;background:url(images/psd8272.JPG) no-repeat -257px -164px;}
+        .type dl dd a:hover b{background-position:-303px -164px;}
+        .type dl dd.selected a b{background-position:-303px -164px;}
+    </style>
+</head>
+<body>
+    <div class="type">
+        <!--<form action="#" method="post" name="typeForm">-->
+            <!--<label>配送类型:</label>-->
+            <!--<input type="radio" name="type" checked/><label>全部</label>-->
+            <!--<input type="radio" name="type"/><label>京东配送</label>-->
+            <!--<input type="radio" name="type"/><label>第三方配送</label>-->
+        <!--</form>-->
+        <dl id="type">
+            <dt>配送类型</dt>
+            <dd class="selected" onclick="show(0)"><a href="#"><b></b>全部</a></dd>
+            <dd onclick="show(1)"><a href="#"><b></b>京东配送</a></dd>
+            <dd onclick="show(2)"><a href="#"><b></b>第三方配送</a></dd>
+        </dl>
+    </div>
+    <script>
+        function show(index){
+            var dd = document.getElementById('type').getElementsByTagName('dd');
+            for(var i= 0,len=dd.length;i<len;i++){
+                if(i==index){
+                    dd[i].className = 'selected';
+                }else{
+                    dd[i].className = '';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

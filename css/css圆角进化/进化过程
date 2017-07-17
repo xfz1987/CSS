@@ -1,0 +1,18 @@
+* 背景图片实现圆角两种方式:
+  * 宽度固定，高度自适应
+    * 由三部分拼接而成，上部为两个顶角为圆角矩形的图片、中部为矩形、下部为两个底角为圆角的矩形
+  * 宽度和高度均自适应
+    * 由5个标签构成
+    * 圆角矩形器(box)-1，上下内编剧大小至少设置为圆角高度，相对定位，放置内容
+    * 4个圆角-4个标签，分别设置各个圆角背景图片，绝对定位于box的4个角
+
+* css2.0 + 标签模拟圆角
+  * 应用像素画中绘制弧线的方法进行模拟
+
+* css3 border-radius 实现圆角（IE6、IE7、IE8不支持）
+ * 设置同 margin 属性，取对角 border-radius: 1px 2px 3px 4px  上左、上右、下右、下左
+ * IE : -ms-border-radius
+ * firefox : -moz-border-radius
+ * chrome、safari : -webkit-border-radius
+
+

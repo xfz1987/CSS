@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>blockquote标签的使用</title>
+<style type="text/css">
+	*{margin:0;padding:0;}
+	.wrap{width:900px;background:#00c;margin:0 auto;}
+	.header{width:100%;background:#f30;}
+	.main{width:100%;background:#fc0;
+	/*
+		由于受到内部子元素浮动影响，高度无法扩展，
+		所以要清除浮动带来的影响
+	*/
+	/*clear:both*/
+	/*
+		当父包含块缩成一条时，用clear方法清除浮动无效
+		它一般用于紧邻后面的元素的清除浮动
+		用第二种方法（移出属性）来清除浮动
+	*/
+	overflow:hidden;
+	}
+	.main .left{width:600px;height:200px;background:#000;float:left;}
+	.main .right{width:280px;height:500px;background:green;float:right;}
+	.footer{width:100%;background:#639;}
+   
+</style>
+</head>
+<body>
+  <div class="wrap">
+	<div class="header">头部部分</div>
+	<div class="main">
+		<div class="left"></div>
+		<div class="right"></div>
+	</div>
+	<div class="footer">底部部分</div>
+  </div>
+</body>
+</html>

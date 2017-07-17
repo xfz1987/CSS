@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框最佳实践:独立absolute</title>
+    <style>
+        body{margin:0;font:14px/1.4 "Microsoft YaHei";background-color:#EDEFF0;}
+        .search{margin:20px;overflow:hidden;}
+        .search .search-input{width:200px;line-height:18px; padding:10px; margin:0; border:0 none;font-size:12px;font-family:inherit; float: left; }
+        .search.focus{border-color: #2ea7e0; }
+        .search .search-input:focus{outline:0 none;}
+        .search .search-btn{width:38px;height:38px;float:left;background: url(images/search.png);text-indent:-9em;overflow:hidden; }
+        .search.focus .search-btn{background-position:0 -38px;}
+        #result{
+            display:none;
+            position:absolute;
+            width:260px;
+            margin:39px 0 0 -1px;
+            padding-left:0;
+            list-style-type:none;
+            border:1px solid #e6e8e9;
+            background-color:#fff;
+            box-shadow:0px 1px 2px #d5d7d8;
+            font-size:12px;
+        }
+        #result>li{line-height:30px;padding-left:12px; }
+        #result>li:hover{background-color:#f9f9f9;}
+        #result a {display:block;color: #5e5e5e;text-decoration: none; }
+        #result a:hover {color:#000; }
+    </style>
+</head>
+<body>
+    <div class="search">
+        <ul id="result">
+            <li><a href="#">分享：CSS深入理解之float浮动</a></li>
+            <li><a href="#">案例：CSS圆角进化论</a></li>
+            <li><a href="#">案例：CSS Sprite雪碧图应用</a></li>
+            <li><a href="#">案例：CSS3 3D 特效</a></li>
+        </ul>
+        <input type="text" class="search-input" placeholder="课程搜索">
+        <a href="javascript:;" class="search-btn">搜索</a>
+    </div>
+    <script>
+(function() {
+    var input = document.getElementsByTagName("input")[0],
+        result = document.getElementById("result");
+
+    if (input && result) {
+        input.onfocus = function() {
+            this.parentNode.className = "search focus";
+            if (this.value !== "") {
+                result.style.display = "block";
+            }
+        };
+        input.onblur = function() {
+            if (this.value === "") {
+                this.parentNode.className = "search";
+            }
+            result.style.display = "none";
+        };
+
+        // IE7 that wrap a DIV for avoid bad effect from float
+        if (!document.querySelector) {
+            var div = document.createElement("div");
+            input.parentNode.insertBefore(div, input);
+            div.appendChild(result);
+        }
+        // events of datalist
+        if ("oninput" in input) {
+            input.addEventListener("input", function() {
+                if (this.value.trim() != "") {
+                    result.style.display = "block";
+                } else {
+                    result.style.display = "none";
+                }
+            });
+        } else {
+            // IE6-IE8
+            input.onpropertychange = function(event) {
+                event = event || window.event;
+                if (event.propertyName == "value" && /focus/.test(this.parentNode.className)) {
+                    if (this.value != "") {
+                        result.style.display = "block";
+                    } else {
+                        result.style.display = "none";
+                    }
+                }
+            };
+        }
+    }
+
+})();
+    </script>
+</body>
+</html>

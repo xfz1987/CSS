@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉列表美化</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style>
+        body{font:16px/32px "微软雅黑";background:#333;}
+        #box{width:500px;height:326px;border:3px solid  #000;background:#fff;position:absolute;left:50%;top:50%;margin:-163px 0 0 -250px;}
+        .prov{width:320px;height:42px;background:#c00;margin:80px auto;position:relative;}
+        .prov strong{width:64px;height:42px;line-height:42px;display:block;float:left;color:#fff;padding-left:10px;}
+        #selProv{width:200px;height:28px;line-height:28px;display:block;float:left;background:#fff url(images/tt_down.png) no-repeat 185px 12px;margin-top:7px;text-indent:8px;color:#ccc;cursor:pointer;}
+        #allProv{width:318px;background:#fff;line-height:30px;clear:both;position:absolute;top:42px;left:0;border:1px solid #dfdfdf;border-bottom:none;}
+        #allProv li{height:30px;border-bottom:1px solid #dfdfdf;}
+        #allProv li b{font-weight:bold;/*padding:0 10px;*/
+            display:inline-block;width:40px;text-align:center;
+        }
+        /*#allProv li span{padding-right:15px;cursor:pointer;}*/
+        #allProv li span{cursor:pointer;padding-right:15px;}
+        #allProv li span:hover{color:#c00;}
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="prov">
+            <strong>送货至: </strong>
+            <span id="selProv">北京</span>
+            <ul id="allProv" style="display:none;">
+                <li><b>A</b><span>安徽</span></li>
+                <li><b>N</b><span>南京</span></li>
+                <li><b>F</b><span>福建</span></li>
+                <li><b>J</b><span>吉林</span></li>
+                <li><b>H</b><span>黑龙江</span><span>河北</span><span>河南</span></li>
+                <li><b>C</b><span>长春</span></li>
+                <li><b>X</b><span>西安</span></li>
+                <li><b>S</b><span>深圳</span><span>沈阳</span></li>
+                <li><b>L</b><span>辽宁</span></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function addLoadEvent(func){
+            var oldonload = window.onload;//得到上一个onload事件函数
+            if(typeof window.onload != 'function'){
+                window.onload = func;
+            }else{
+                window.onload = function(){
+                    oldonload();//调用之前覆盖的onload事件的函数
+                    func();//调用当前函数
+                }
+            }
+        }
+        function $(id){
+            return document.getElementById(id);
+        }
+
+        function showAllPro(){
+            $('selProv').onclick = function(){
+                if($('allProv').style.display == 'none'){
+                    $('selProv').style.backgroundImage = 'url(images/tt_up.png)';
+                    $('allProv').style.display = 'block';
+                    $('selProv').style.color = '#ccc';
+                    selectProv();
+                }else{
+                    hideAllPro();
+                }
+
+            };
+        }
+        function hideAllPro(){
+            $('selProv').style.backgroundImage = 'url(images/tt_down.png)';
+            $('allProv').style.display = 'none';
+        }
+
+        function selectProv(){
+            var pros = $('allProv').getElementsByTagName('li');
+            var links;
+            for(var i= 0,len=pros.length;i<len;i++){
+                links = pros[i].getElementsByTagName('span');
+                for(var j= 0;j<links.length;j++){
+                    links[j].onclick = function(){
+                        $('selProv').innerHTML = this.innerHTML;
+                        $('selProv').style.color = '#000';
+                        hideAllPro();
+                    }
+                }
+            }
+        }
+        addLoadEvent(showAllPro);
+
+    </script>
+</body>
+</html>

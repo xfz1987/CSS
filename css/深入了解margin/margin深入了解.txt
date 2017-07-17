@@ -1,0 +1,55 @@
+1.margin可以改变容器的尺寸
+  * 可视尺寸 - clientWidth
+      * 满足条件
+        * 没有设定width/height的不痛block水平元素（float、absolute/fixed、inline、table cell都不行）
+        * 只适用水平方向尺寸
+      * 应用场景
+        * 一侧定宽的自适应布局 
+        * 两端对齐布局
+
+  * 占据尺寸 - outerWidth 
+      * 满足条件
+         * block/inline-block水平元素均使用
+         * 与有没有设定width/height值无关
+         * 适用于水平方向和垂直方向
+      * 应用场景
+        * 实现滚动容器内上下留白
+        * 多栏等高布局
+
+2.margin与百分比单位
+  * 普通元素百分比/绝对定位元素百分比 
+    * 特性  
+      * 普通: margin:10%; 水平与垂直方向都是相对于容器宽度计算的
+      * 绝对定位: margin:10; 水平与垂直方向都是相对于第一个定位祖先元素(r/s/f)容器的宽度计算的
+    * 应用场景
+ 	  * 宽高2:1 自适应矩形
+
+3.margin重叠
+  * 条件: block水平元素（无float、absolute）
+  * 情景: 考虑垂直方向
+    * 相邻的兄弟元素
+      <p>第一行</p>  p{margin:1em 0;}
+      <p>第二行</p>
+      结果：第一行和第二行的间距是1em，而不是2em，发生重叠了
+    * 父级和第一个/最后一个子元素
+      <div class="father">
+         <div class="son" style="margin-top:20px;"></div>
+      </div>
+      bug: father高度并没有变化，反而father上边距增加了，相当于给father增加了margin
+      解决: 增加border\padding\overflow:hidden;
+
+    * 空的block元素
+      <div class="father" style="overflow:hidden;">
+         <div class="son" style="margin:1em 0;"></div>
+      </div>
+      bug: son的高度只有1em，而非2em
+  * 重叠计算规则：
+    * 正正取大值
+    * 正负值相加
+    * 负负最负值
+
+4.marign无效情形
+  * inlin水平元素的垂直margin无效
+  * marign重叠时，无效
+  * display:table-cell/table-row无效
+  * 绝对定位元素非定位方向(top/l/r/b)的margin无效

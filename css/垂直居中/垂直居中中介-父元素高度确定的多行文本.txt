@@ -1,0 +1,48 @@
+父元素高度确定的多行文本、图片、块状元素的竖直居中的方法有两种：
+
+方法一：
+使用插入 table (包括tbody、tr、td)标签，
+同时设置 vertical-align：middle。
+
+html代码：                              css代码：                             
+					                                      
+<body>					table td{height:500px;background:#ccc}
+<table><tbody><tr><td class="wrap">       
+<div>                                   /*因为 td 标签默认情况下就默认设置了 vertical-align 为 middle，
+    <p>看我是否可以居中。</p>		所以我们不需要显式地设置了。*/                                 
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+    <p>看我是否可以居中。</p>
+</div>
+</td></tr></tbody></table>
+</body>
+
+-------------------------------------------------------------------------------------------------------------------
+方法二：
+在 chrome、firefox 及 IE8 以上的浏览器下
+可以设置块级元素的 display 为 table-cell，激活 vertical-align 属性，
+但注意 IE6、7 并不支持这个样式。
+
+
+html代码：                                css代码：                                             
+					                                                        
+<div class="container">			  <style>                                               
+					  .container{                                           
+        <p>看我是否可以居中。</p>	      height:300px;                                     
+        <p>看我是否可以居中。</p>	      background:#ccc;                                  
+        <p>看我是否可以居中。</p>	      display:table-cell;/*IE8以上及Chrome、Firefox*/   
+        <p>看我是否可以居中。</p>	      vertical-align:middle;/*IE8以上及Chrome、Firefox*/
+        <p>看我是否可以居中。</p>	  }                                                     
+					  </style>                                              
+</div>
+
+
+
+
+
+
+
+
+
+

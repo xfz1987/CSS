@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.line-tri{
+			width:150px;
+			height:30px;
+			padding:15px 0;
+			border-top:30px solid;
+			border-bottom:30px solid;
+			background-color:currentColor;
+			background-clip:content-box;
+		}
+		.line-tri:hover{background-color:red;border-color:red;cursor:pointer;}
+		.line-double{
+			width:150px;
+			height:20px;
+			border-top:60px double;
+			border-bottom:20px solid;
+		}
+		.line-double:hover{border-color:red;cursor:pointer;}
+
+	</style>
+</head>
+<body>
+	<p>方式一</p>
+	<div class="line-tri"></div>
+
+	<p>方式二:利用border-style:double</p>
+	<div class="line-double"></div>
+</body>
+</html>

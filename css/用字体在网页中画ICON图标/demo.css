@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot');/*ie9兼容模式*/
+    src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),/*解决bug*/
+    url('fonts/icomoon.ttf') format('truetype'),
+    url('fonts/icomoon.woff') format('woff'),
+    url('fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.imooc-icon{
+    font-family:"icomoon";
+    font-weight: normal;
+    font-style: normal;
+    font-size:20px;
+
+    /* Better Font Rendering :设置字体的光滑性属性、抗锯齿属性=========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+.icon-home:before{
+    content:"\e900";
+    color:red;
+}
+
+ul{list-style:none;}
+ul li{margin-bottom:20px;}
+
+

@@ -1,0 +1,29 @@
+1.padding影响block元素尺寸
+ * padding值爆走，一定会影响
+ * width非auto,padding影响
+ * width:auto活box-sizing:border-box时，同时padding没有暴走，不影响
+
+2.padding对于inline元素
+ * 影响水平尺寸，但不影响垂直尺寸，但是会影响背景色（占据空间）
+ * 应用：实现高度可控的分隔符 |，如 注册|退出
+   * 方式一: 直接使用字符 ，高度不可控
+   * 方式二: inline-block控制  ，高度不可控
+   * 方式三: 使用inline padding  
+     注册<span></span>退出
+     span{padding:16px 6px 1px ;margin-left:12px;border-left:2px solid #000;font-size:0;}
+
+3.padding不支持负值
+
+4.padding百分比值
+  * block
+    * 全是相对于宽度计算的
+    * 应用：移动端实现头部正方形的banner
+      * 因为手机尺寸不一致，我们想实现正方形就需要js先获取到屏幕的宽，然后再计算赋值给高度，比较麻烦
+        而利用padding百分比是根据宽度计算的这一特性，很轻松就实现移动端的正方形了
+        .container{padding:50%;} 
+
+      
+  * inline
+    * 同样是相对于宽度计算的
+    * 默认的高度宽度细节有差异，所以实现不了正方形
+    * padding会断行

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不定尺寸图片或多行文字的垂直居中.html</title>
+    <style>
+        *{margin:0;padding:0;}
+        p{height:400px;background:#ccc;text-align:center;}
+        img{width:200px;height:200px;
+            /*第一步:inline-block*/
+            display:inline-block;
+            /*第三步:图片vertical-align:middle;*/
+            vertical-align:middle;
+        }
+        /*第二步:创建0宽度100%高度辅助元素,inline-block*/
+        i{height:100%;display:inline-block;vertical-align:middle;}
+        span{display:inline-block;vertical-align:middle;}
+    </style>
+</head>
+<body>
+    <!-- 不定尺寸图片的垂直居中 -->
+    <p>
+        <img src="mm1.jpg">
+        <!-- 第二步:创建0宽度100%高度辅助元素,inline-block -->
+        <i></i>
+    </p>
+    <br><br><br>
+    <p>
+        <span>走起...</span>
+        <span>走起...</span>
+        <span>走起...</span>
+        <i></i>
+    </p>
+</body>
+</html>

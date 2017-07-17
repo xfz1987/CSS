@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.triangle-show{overflow:hidden;}
+		.triangle-show>div{
+			float:left;
+			margin-right:50px;
+			width:0;
+			height:0;
+			border:100px solid;
+			border-color: red green blue orange;
+		}
+		.triangle-show .show-1{
+			width:50px;
+			height:50px;
+		}
+		.triangle-show .show-2{
+			width:0;
+			height:0;
+		}
+		.show-area{
+			position:relative;
+			border:5px solid #000;
+			border-radius:5px;
+			padding:25px;
+			margin-top:50px;
+			height:100px;
+		}
+		.show-area .item{float:left;margin-right:25px;}
+ 		.triangle{width:0;height:0;}
+ 		.triangle-up{
+ 			border-left: 50px solid transparent;
+    		border-right: 50px solid transparent;
+    		border-bottom: 50px solid red;
+ 		}
+		.triangle-right{
+			border-top:50px solid transparent;
+			border-bottom:50px solid transparent;
+			border-left:50px solid red;
+		}
+		.triangle-down{
+			border-left:50px solid transparent;
+			border-right:50px solid transparent;
+			border-top:50px solid red;
+		}
+		.triangle-left{
+			border-top:50px solid transparent;
+			border-bottom:50px solid transparent;
+			border-right:50px solid red;
+		}
+		.triangle-big{
+			position:relative;
+			border-top:50px solid transparent;
+			border-right:50px solid red;	
+		}
+		.triangle-big:after{
+			content:"";
+			position:absolute;
+			left:0;
+			bottom:0;
+			border-top:30px solid transparent;
+			border-right:50px solid #fff;
+		}
+		.t-b{
+			position:absolute;
+			border-left:50px solid transparent;
+			border-right:50px solid transparent;
+			border-top:50px solid #000;
+			left:50%;
+			bottom:-50px;
+		}
+		.t-b:after{
+			content:"";
+			position:absolute;
+			top:-50px;
+			left:-45px;
+			border-left:45px solid transparent;
+			border-right:45px solid transparent;
+			border-top:45px solid #fff;
+		}
+		.tixing{
+			width:100px;
+			border-left:50px solid transparent;
+			border-right:50px solid transparent;
+			border-bottom:50px solid red; 
+		}
+
+	</style>
+</head>
+<body>
+	<div class="triangle-show">
+		<div class="show-1"></div>
+		<div class="show-2"></div>
+	</div>
+	<div class="show-area">
+		<div class="item triangle triangle-up"></div>
+		<div class="item triangle triangle-right"></div>
+		<div class="item triangle triangle-down"></div>
+		<div class="item triangle triangle-left"></div>
+		<div class="item triangle triangle-big"></div>
+		<div class="triangle t-b"></div>
+		<div class="item tixing"></div>
+	</div>
+	
+</body>
+</html>

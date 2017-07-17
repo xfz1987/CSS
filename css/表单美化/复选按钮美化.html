@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>复选按钮美化</title>
+    <link rel="stylesheet" href="reset.css"/>
+    <style>
+        body{font:13px/26px "微软雅黑";}
+        .typeList{overflow:hidden;width:540px;height:30px;border:1px solid #dfdfdf;border-width:1px 0;margin:50px auto;}
+        .typeList ul{height:30px;line-height:30px;padding-left:15px;}
+        .typeList ul li{float:left;margin-right:12px;position:relative;}
+        .typeList ul li input{/*隐藏复选框*/display:none;}
+        .typeList ul li b{display:block;width:20px;height:20px;background:url(images/tt.png) no-repeat -45px -420px;position:absolute;top:6px;left:0;}
+        .typeList ul li label{padding-left:23px;}
+        .typeList ul li:hover b,.typeList ul li.selected b{background-position:-64px -420px;}
+    </style>
+</head>
+<body>
+    <div class="typeList">
+        <form action="#" name="typeList">
+            <ul id="checkList">
+                <li class="selected"><input type="checkbox" name="type" id="1"/><label for="1">阿道夫</label></li>
+                <li><input type="checkbox" name="type" id="2"/><label for="2">撒地方大厦</label></li>
+                <li><input type="checkbox" name="type" id="3"/><label for="3">士大夫是</label></li>
+                <li><input type="checkbox" name="type" id="4"/><label for="4">订单</label></li>
+                <li><input type="checkbox" name="type" id="5"/><label for="5">问问</label></li>
+                <li><input type="checkbox" name="type" id="6"/><label for="6">第三方示范点</label></li>
+                <li><input type="checkbox" name="type" id="7"/><label for="7">士大夫阿三</label></li>
+                <li><input type="checkbox" name="type" id="8"/><label for="8">流量</label></li>
+                <li><input type="checkbox" name="type" id="9"/><label for="9">看看</label></li>
+                <li><input type="checkbox" name="type" id="10"/><label for="10">仍然</label></li>
+            </ul>
+        </form>
+
+    </div>
+
+    <script>
+        function createTag(){
+            var li = document.getElementById('checkList').getElementsByTagName('li');
+            var label;
+            for(var i= 0,len=li.length;i<len;i++){
+                label = li[i].getElementsByTagName('label');
+                var bTag = document.createElement('b');
+                li[i].insertBefore(bTag,label[0]);
+            }
+        }
+
+        function checkList(){
+            var li = document.getElementById('checkList').getElementsByTagName('li');
+            for(var i= 0,len=li.length;i<len;i++){
+                li[i].onclick = function(){
+                    console.log(this);
+                    if(this.className=='selected'){
+                        this.className = '';
+                    }else{
+                        this.className = 'selected';
+                    }
+                }
+            }
+        }
+
+        /*
+        * onload 只能一次执行一个方法
+        * 该函数可以执行多个函数
+        * */
+        function addLoadEvent(func){
+            var oldonload = window.onload;//得到上一个onload事件函数
+            if(typeof window.onload != 'function'){
+                window.onload = func;
+            }else{
+                window.onload = function(){
+                    oldonload();//调用之前覆盖的onload事件的函数
+                    func();//调用当前函数
+                }
+            }
+        }
+        addLoadEvent(createTag);
+        addLoadEvent(checkList);
+
+    </script>
+</body>
+</html>

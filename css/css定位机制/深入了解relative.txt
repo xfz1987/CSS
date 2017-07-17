@@ -1,0 +1,14 @@
+1.relative是自身定位，距原本位置的偏移
+
+2.无侵入布局: 挪动位置，原本位置还在占据，并不会影响其他元素的布局
+应用: 实现鼠标拖拽，比自身api好用
+
+3.top/bottom 和 left/right对立属性同时存在时:
+  relative: 斗争 - 只有一个能存在，无视bottom、right
+  absolute: 拉伸 - 不设置宽度或高度，就可以自动增高或增宽
+
+4.relative的最小影响原则:
+  尽量降低relative属性对其他元素或布局的潜在影响！
+  （在IE7、IE8很容易出现bug）
+  a.尽量避免使用relative
+    absolute定位不依赖relative

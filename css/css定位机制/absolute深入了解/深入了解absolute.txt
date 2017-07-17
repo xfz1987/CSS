@@ -1,0 +1,66 @@
+1.absolute与float的相同的特性表现
+  a.包裹性
+  b.破坏性:父元素没有设置高或宽，父元素的高或宽取决于这个元的内容
+  c.不能同时存在
+
+2.absolute独立使用，不与relative合用
+  超越overflow，无论是滚动还是隐藏
+  * 将元素设置absolute,然后调整margin,如果使用top和left，其父元素还得relative
+
+3.无依赖
+  要想不受relative限制的印象，不要使用top/bottom/left/right任何一个属性，或使用auto作为值
+  表现: 脱离文档流、去浮动，跟随性
+
+  * IE7下用position:absolute;时，元素会成为inline-block,在外层套div解决这个bug
+
+4.层级关系
+  后来者居上（别z-index了），弹窗类设置为2就好了，除特殊情况（交叉显示），否则z-inde冗余
+
+5.absolute与width和height
+  a.可以相互替代（IE6不支持）
+    *top/bottom 和 left/right对立属性同时存在时，拉伸 - 不设置宽度或高度，就可以自动增高或增宽
+    例如要实现一个全屏自适应的50%黑色半透明遮罩层
+    html,body{height:100%;}
+    * 通常方案: overlay{position:absolute;width:100%;height:100%;left:0;top:0;}
+    * NB方案:overlay{position:absolute;left:0;top:0;right:0;bottom:0;}
+
+  b.相互支持性
+    * 容器拉伸，内部元素支持百分比width/height值
+      * 通常情况下
+        元素百分比height要想起作用，需要父级容器的height值不是auto
+      * 绝对定位拉伸下
+        即使父级容器的height值是auto，只要容器绝对定位拉伸形成，百分比高度值也是支持的。
+        例如实现:9宫格
+        .page{
+            position:absolute;
+            left:0;right:0;
+            top:0;bottom:0;
+        }
+        .page .list{
+            float:left;
+            height:33.3%;
+            width:33.3%;
+        }
+
+    c.相互合作性
+      如果拉伸和width/height同时存在
+      width/height设置的尺寸 覆盖left/right/top/bottom拉伸的尺寸
+      例如:  position:absolute;left:0;right:0;top:0;bottom:0;width:50%;
+             最后的尺寸为50%;
+      * 绝对居中特性：
+        当尺寸设置、拉伸以及margin:auto，同时存在，就有绝对定位元素的绝对居中效果
+        * 注意:支持IE8+本
+        * 分析:
+          .demo{width:400px;height:400px;background:#ccc;margin:0 auto;}可以实现居中
+          但是如果.demo是绝对定位的，已经脱离了文档流，margin:0 auto;不好使了
+          .demo{position:absolute;width:400px;height:400px;background:#ccc;margin:0 auto;}
+
+          这时要想居中有三种方式:
+          ①设置其父容器relative，然后left:50%,margin-left:-demo的宽度
+          ②在demo前加一个&nbsp,然后demo设置inline-block,最后给你父元素text-align:center;
+          ③使其左右拉伸，就可以居中了
+             .demo{position:absolute;left:0;right:0;width:400px;height:400px;background:#ccc;margin:0 auto;}
+
+          其中:①适用于所有浏览器
+               ②要想使用于所有浏览器，需要补丁*display:inline;*zoom:1;
+               ③支持IE8+版本

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.item{display:block;width:400px;height:150px;background-repeat:no-repeat;background-image:url(1.png);}
+		.item-1{background-position:50px 40px;}
+		.item-2{
+			background-position:100% 40px;
+			border-right:50px solid transparent;
+		}
+	</style>
+</head>
+<body>
+	<p>拖动textarea看效果: 发现怎么改变textarea的大小，背景始终都在左侧</p>
+	<textarea class="item item-1"></textarea>
+	<p>如果我们要将背景定位到距离右侧50px,咋办啊，background-position:只能相对左上角数值定位，不能相对右下角</p>
+	<p>方案:background-position:100% 40px;然后给盒子加一个50px的透明有边框，100% 右侧定位不计算border区域</p>
+	<textarea class="item item-2"></textarea>
+</body>
+</html>
